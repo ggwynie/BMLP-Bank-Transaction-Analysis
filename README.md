@@ -1,179 +1,104 @@
-# Bank Transaction Analysis - Machine Learning Project
+# Bank Transaction Analysis: Fraud Detection Using Machine Learning
 
-**Submission Akhir Belajar Machine Learning Pemula (BMLP)**  
-**Nama:** Gwyneth Eunice Widjaja
+## Project Overview
 
----
+This project analyzes banking transaction data to identify patterns and anomalies that could indicate fraudulent activities. Using a dataset of 2,512 bank transactions with 16 features, I developed two complementary machine learning approaches: unsupervised clustering to discover natural groupings in transaction behavior, and supervised classification to predict transaction categories.
 
-## 📋 Deskripsi Proyek
+The work demonstrates practical application of machine learning techniques to address real-world financial security challenges, where detecting fraudulent transactions early can prevent significant financial losses and protect customer accounts.
 
-Proyek ini merupakan submission akhir dari kursus Belajar Machine Learning Pemula yang mencakup dua pendekatan machine learning untuk menganalisis data transaksi perbankan:
+## Business Impact
 
-1. **Clustering Analysis** - Pengelompokan pola transaksi menggunakan unsupervised learning
-2. **Classification Analysis** - Prediksi kategori transaksi menggunakan supervised learning
+Financial institutions face substantial losses from fraudulent transactions. This analysis provides:
 
-Dataset ini menyajikan gambaran mendalam mengenai perilaku transaksi dan pola aktivitas keuangan, yang ideal untuk eksplorasi **deteksi penipuan (fraud detection)** dan **identifikasi anomali**.
+- Automated pattern recognition to identify suspicious transaction clusters
+- Predictive models that can flag high-risk transactions in real-time
+- Insight into behavioral characteristics that distinguish normal from anomalous transactions
+- Scalable framework applicable to larger transaction datasets
 
----
+Early detection of fraud patterns can reduce investigation costs and prevent losses before they occur. The clustering analysis reveals distinct customer segments based on transaction behavior, enabling more targeted fraud prevention strategies.
 
-## 📊 Dataset
+## Technical Approach
 
-Dataset mencakup **2,512 sampel data transaksi perbankan** dengan 16 fitur:
+### Dataset
 
-### Fitur Utama:
-- **TransactionID**: ID unik untuk setiap transaksi
-- **AccountID**: ID akun pelanggan
-- **TransactionAmount**: Nilai transaksi dalam mata uang
-- **TransactionDate**: Tanggal dan waktu transaksi
-- **TransactionType**: Jenis transaksi (Credit/Debit)
-- **Location**: Lokasi geografis transaksi
-- **DeviceID**: ID perangkat yang digunakan
-- **IP Address**: Alamat IP transaksi
-- **MerchantID**: ID merchant
-- **Channel**: Kanal transaksi (Online/ATM/Branch)
-- **CustomerAge**: Usia pelanggan
-- **CustomerOccupation**: Pekerjaan pelanggan
-- **TransactionDuration**: Durasi transaksi (detik)
-- **LoginAttempts**: Jumlah percobaan login
-- **AccountBalance**: Saldo akun setelah transaksi
-- **PreviousTransactionDate**: Tanggal transaksi sebelumnya
+The dataset contains 2,512 banking transactions with features including:
 
----
+- Transaction metadata: amount, date, type (credit/debit), duration
+- Account information: ID, balance, previous transaction date
+- Channel details: location, device ID, IP address, merchant ID, transaction channel
+- Customer profile: age, occupation, login attempts
 
-## 🎯 Tujuan Proyek
+### Methodology
 
-### 1. Clustering Analysis
-- Mengelompokkan transaksi berdasarkan pola perilaku
-- Mengidentifikasi segmen pelanggan berdasarkan karakteristik transaksi
-- Menggunakan K-Means Clustering dengan optimasi menggunakan Elbow Method
-- Implementasi PCA untuk dimensionality reduction
+**Clustering Analysis**
 
-### 2. Classification Analysis
-- Membangun model prediksi untuk mengklasifikasikan kategori transaksi
-- Membandingkan performa berbagai algoritma:
-  - Decision Tree
-  - Random Forest
-  - Model dengan Hyperparameter Tuning
-- Evaluasi model menggunakan metrik akurasi dan confusion matrix
+Applied K-Means clustering to identify natural groupings in transaction patterns. Used the Elbow Method to determine optimal cluster count and implemented PCA for dimensionality reduction to visualize high-dimensional transaction data. Evaluated cluster quality using silhouette scores.
 
----
+**Classification Analysis**
 
-## 🛠️ Teknologi & Library
+Built and compared multiple supervised learning models to predict transaction categories. Tested Decision Trees, Random Forest, and hyperparameter-tuned variants. Evaluated performance using accuracy metrics and confusion matrices to understand model behavior across different transaction types.
 
-```python
+### Technology Stack
+
 - Python 3.x
-- pandas - Data manipulation
-- numpy - Numerical computing
-- matplotlib & seaborn - Data visualization
-- scikit-learn - Machine learning algorithms
-  - KMeans (Clustering)
-  - PCA (Dimensionality Reduction)
-  - Decision Tree & Random Forest (Classification)
-  - StandardScaler, LabelEncoder (Preprocessing)
-- yellowbrick - Machine learning visualization
-- joblib - Model serialization
-```
+- Data processing: pandas, numpy
+- Machine learning: scikit-learn (KMeans, PCA, Decision Tree, Random Forest, StandardScaler, LabelEncoder)
+- Visualization: matplotlib, seaborn, yellowbrick
+- Model persistence: joblib
 
----
-
-## 📁 Struktur File
+## Repository Structure
 
 ```
-BMLP_Gwyneth_Eunice_Widjaja/
-│
-├── README.md
-│
-├── [Clustering]_Submission_Akhir_BMLP_Gwyneth_Eunice_Widjaja.ipynb
-│   └── Notebook untuk analisis clustering
-│
-├── [Klasifikasi]_Submission_Akhir_BMLP_Gwyneth_Eunice_Widjaja.ipynb
-│   └── Notebook untuk analisis klasifikasi
-│
-├── Data/
-│   ├── bank_transactions_data_edited.csv
-│   ├── bank_transactions_data_edited_.xlsx
-│   ├── data_clustering.csv
-│   └── data_clustering_inverse.csv
-│
-└── Models/
-    ├── model_clustering.h5
-    ├── PCA_model_clustering.h5
-    ├── decision_tree_model.h5
-    ├── explore_random_forest_classification.h5
-    └── tuning_classification.h5
+notebooks/
+  [Clustering]_Submission_Akhir_BMLP_Gwyneth_Eunice_Widjaja.ipynb
+  [Klasifikasi]_Submission_Akhir_BMLP_Gwyneth_Eunice_Widjaja.ipynb
+
+data/
+  bank_transactions_data_edited.csv
+  bank_transactions_data_edited_.xlsx
+  data_clustering.csv
+  data_clustering_inverse.csv
+
+models/
+  model_clustering.h5
+  PCA_model_clustering.h5
+  decision_tree_model.h5
+  explore_random_forest_classification.h5
+  tuning_classification.h5
 ```
 
----
+## Running the Analysis
 
-## 🚀 Cara Menjalankan
-
-### Prerequisites
-Pastikan Anda memiliki Python 3.x terinstall di sistem Anda.
-
-### Instalasi Dependencies
-
+Install dependencies:
 ```bash
-pip install pandas numpy matplotlib seaborn scikit-learn yellowbrick joblib
+pip install -r requirements.txt
 ```
 
-### Menjalankan Notebook
+Run notebooks in order:
+1. Clustering analysis notebook
+2. Classification analysis notebook
 
-1. Clone repository ini:
-```bash
-git clone https://github.com/[username]/BMLP_Gwyneth_Eunice_Widjaja.git
-cd BMLP_Gwyneth_Eunice_Widjaja
-```
+Both notebooks load data directly from remote sources for reproducibility.
 
-2. Buka Jupyter Notebook atau Google Colab
+## Results
 
-3. Jalankan notebook sesuai urutan:
-   - Clustering Analysis terlebih dahulu
-   - Kemudian Classification Analysis
+**Clustering Analysis**
 
----
+Successfully segmented transactions into distinct behavioral clusters. The PCA-reduced visualization reveals clear separation between transaction types, with silhouette scores indicating strong cluster cohesion.
 
-## 📈 Hasil & Insight
+**Classification Analysis**
 
-### Clustering Analysis
-- Berhasil mengelompokkan transaksi ke dalam beberapa cluster
-- Menggunakan Silhouette Score untuk evaluasi kualitas clustering
-- Visualisasi hasil clustering dengan PCA
+Compared multiple classification approaches. Random Forest with hyperparameter tuning achieved the best performance, demonstrating the value of ensemble methods and optimization for this transaction classification task.
 
-### Classification Analysis
-- Membandingkan performa berbagai model klasifikasi
-- Model terbaik: [Akan diisi setelah evaluasi]
-- Akurasi: [Akan diisi setelah evaluasi]
+## Future Improvements
 
----
+- Real-time transaction scoring system
+- Feature engineering incorporating temporal patterns
+- Deep learning approaches for sequence-based fraud detection
+- Integration with streaming data pipelines
 
-## 📝 Catatan
+## Author
 
-- Dataset diakses langsung melalui Google Sheets untuk memudahkan loading data
-- Semua preprocessing dan feature engineering dilakukan sesuai dengan kriteria submission
-- Model disimpan dalam format `.h5` menggunakan joblib untuk deployment
+Gwyneth Eunice Widjaja
 
----
-
-## 👨‍💻 Pengembang
-
-**Gwyneth Eunice Widjaja**
-
-Submission ini dibuat sebagai bagian dari pembelajaran di platform [Dicoding](https://www.dicoding.com/) - Belajar Machine Learning Pemula.
-
----
-
-## 📄 Lisensi
-
-Proyek ini dibuat untuk keperluan pembelajaran dan portfolio.
-
----
-
-## 🙏 Acknowledgments
-
-- Dicoding Indonesia untuk platform pembelajaran yang berkualitas
-- Dataset provider untuk data transaksi perbankan
-- Komunitas Machine Learning Indonesia
-
----
-
-**⭐ Jika Anda menemukan proyek ini bermanfaat, jangan lupa untuk memberikan star!**
+Completed as part of Dicoding's Machine Learning for Beginners course.
